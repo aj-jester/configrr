@@ -1,0 +1,8 @@
+nas01-cl.bmc.nas.iad1.ccmteam.com:
+  hostgroup: netapp
+  has_agent: false
+  is_netapp: true
+nas02-cl.bmc.nas.slc1.ccmteam.com:
+  hostgroup: netapp
+  has_agent: false
+  is_netapp: true

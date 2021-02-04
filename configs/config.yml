@@ -1,0 +1,44 @@
+foreman:
+  host: foreman.ccmteam.com
+  username: admin
+  password: xxxxxxxx
+  exclude_hostgroups:
+    - icingatwo_master
+    - icingatwo_satellite
+  facts:
+    - env
+    - is_virtual
+
+consul:
+  uri: 'http://localhost:8500'
+  token: 'UUID'
+
+logger:
+  file_path: '/var/log/configrr.log'
+  max_days: 30
+  debug: true
+
+state_file_path: '/var/tmp/configrr_state.json'
+
+templates:
+  icinga2_hosts:
+    ingress: '/opt/configrr/templates/icinga2_hosts.conf.erb'
+    egress: '/etc/icinga2/conf.d/hosts.conf'
+    restart:
+      - systemctl
+      - restart
+      - icinga2
+  icinga2_endpoints:
+    ingress: '/opt/configrr/templates/icinga2_endpoints.conf.erb'
+    egress: '/etc/icinga2/conf.d/endpoints.conf'
+    restart:
+      - systemctl
+      - restart
+      - icinga2
+  icinga2_zones:
+    ingress: '/opt/configrr/templates/icinga2_zones.conf.erb'
+    egress: '/etc/icinga2/conf.d/zones.conf'
+    restart:
+      - systemctl
+      - restart
+      - icinga2
